@@ -17,7 +17,7 @@ from sargarmi import register_sargarmi
 from sell import register_sell
 from selfi4 import register_text_styles
 from clock import register_clock
-from security import register_security_handlers
+from security import register_security
 
 # --- سرور keep_alive برای ریپلیت ---
 app = Flask('')
