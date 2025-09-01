@@ -12,12 +12,12 @@ from games import register_games
 from menu import register_menu
 from group_manager import register_group_manager
 from sargarmi_plus import register_sargarmi_plus
-from security import register_security
 from help1 import register_help1
 from sargarmi import register_sargarmi
 from sell import register_sell
 from selfi4 import register_text_styles
 from clock import register_clock
+from security import register_security_handlers
 
 # --- سرور keep_alive برای ریپلیت ---
 app = Flask('')
@@ -41,7 +41,7 @@ API_HASH = config["api_hash"]
 
 SESSIONS = [
     "acc", "acc1", "acc2", "acc3", "acc4",
-    "acc5", "acc6", "acc7", "acc8", "acc9"
+    "acc5", "acc6", "acc7", "acc8"
 ]
 
 # فایل مشترک برای گروه‌ها (شناسه‌های تلگرام)
@@ -349,12 +349,21 @@ async def setup_client(session_name):
     register_menu(client, state, GLOBAL_GROUPS, save_state, send_status)
     register_group_manager(client, state, GLOBAL_GROUPS, save_state, send_status)
     register_sargarmi_plus(client, state, GLOBAL_GROUPS, save_state, send_status)  # سرگرمی پیشرفته
-    register_security(client, state, GLOBAL_GROUPS, save_state, send_status)
     register_help1(client, state, GLOBAL_GROUPS, save_state, send_status)
     register_sargarmi(client, state, GLOBAL_GROUPS, save_state, send_status)  # سرگرمی ساده
     register_sell(client)
     register_text_styles(client, state, save_state)
     register_clock(client, state, save_state)
+    register_security_handlers(client, "client")
+    register_security_handlers(acc, "acc")
+    register_security_handlers(acc1, "acc1")
+    register_security_handlers(acc2, "acc2")
+    register_security_handlers(acc3, "acc3")
+    register_security_handlers(acc4, "acc4")
+    register_security_handlers(acc5, "acc5")
+    register_security_handlers(acc6, "acc6")
+    register_security_handlers(acc7, "acc7")
+    register_security_handlers(acc8, "acc8")
 
     return client
 
@@ -368,4 +377,3 @@ if __name__ == "__main__":
     keep_alive()   # 🔥 اضافه شد برای روشن موندن توی Replit
     loop = asyncio.get_event_loop()
     loop.run_until_complete(main())
-
