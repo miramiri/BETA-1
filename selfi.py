@@ -355,7 +355,7 @@ async def setup_client(session_name):
     register_text_styles(client, state, save_state)
     register_clock(client, state, save_state)
     register_security(client, state, GLOBAL_GROUPS, save_state, send_status)
-    register_security_handlers(acc, "acc")
+    register_security(acc)
     register_security_handlers(acc1, "acc1")
     register_security_handlers(acc2, "acc2")
     register_security_handlers(acc3, "acc3")
