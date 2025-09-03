@@ -366,6 +366,13 @@ async def setup_client(session_name):
 
     return client
 
+
+
+# --- امنیت (فعلاً خالی) ---
+def register_security_handlers(client, name):
+    # این تابع برای هندلرهای امنیتی رزرو شده
+    # فعلاً خالی گذاشتیم تا خطا نده
+    pass
 async def main():
     clients = await asyncio.gather(*[setup_client(s) for s in SESSIONS])
     print(f"🚀 {len(clients)} کلاینت ران شد.")
