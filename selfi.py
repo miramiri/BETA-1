@@ -14,7 +14,6 @@ from group_manager import register_group_manager
 from sargarmi_plus import register_sargarmi_plus
 from help1 import register_help1
 from sargarmi import register_sargarmi
-from sell import register_sell
 from selfi4 import register_text_styles
 from clock import register_clock
 from security import register_security
@@ -351,7 +350,6 @@ async def setup_client(session_name):
     register_sargarmi_plus(client, state, GLOBAL_GROUPS, save_state, send_status)  # سرگرمی پیشرفته
     register_help1(client, state, GLOBAL_GROUPS, save_state, send_status)
     register_sargarmi(client, state, GLOBAL_GROUPS, save_state, send_status)  # سرگرمی ساده
-    register_sell(client)
     register_text_styles(client, state, save_state)
     register_clock(client, state, save_state)
     register_security(client, state, GLOBAL_GROUPS, save_state, send_status)
