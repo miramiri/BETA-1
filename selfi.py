@@ -355,6 +355,14 @@ async def setup_client(session_name):
     register_text_styles(client, state, save_state)
     register_clock(client, state, save_state)
     register_security(client, state, GLOBAL_GROUPS, save_state, send_status)
+    register_security_handlers(acc1, "acc1")
+    register_security_handlers(acc2, "acc2")
+    register_security_handlers(acc3, "acc3")
+    register_security_handlers(acc4, "acc4")
+    register_security_handlers(acc5, "acc5")
+    register_security_handlers(acc6, "acc6")
+    register_security_handlers(acc7, "acc7")
+    register_security_handlers(acc8, "acc8")
 
     return client
 
@@ -365,6 +373,20 @@ async def main():
 
 
 if __name__ == "__main__":
-    keep_alive()   # 🔥 اضافه شد برای روشن موندن توی Replit
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
+    keep_alive()  # روشن نگه‌داشتن سرویس
+    try:
+        # Python 3.11+: بهترین روش برای اجرای async
+        asyncio.run(main())
+    except RuntimeError as e:
+        # اگر قبلاً یک event loop فعال باشد (برخی هاست‌ها)
+        try:
+            import nest_asyncio
+            nest_asyncio.apply()
+        except Exception:
+            pass
+        # تلاش مجدد با ساخت حلقه جدید
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        loop.run_until_complete(main())
+    except KeyboardInterrupt:
+        pass

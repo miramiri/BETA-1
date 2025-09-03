@@ -190,3 +190,34 @@ def register_clock(client, state, save_state):
         )
         fonts = "\n".join([f"{i}- {render_time('00:00', i)}" for i in range(1, 53)])
         await event.edit(header + "\n" + fonts)
+    
+    @client.on(events.NewMessage(pattern=r"\.ساعت (\d+)$"))
+    async def set_font_alias(event):
+        if event.sender_id != state["owner_id"]:
+            return
+        n = int(event.pattern_match.group(1))
+        if 1 <= n <= 52:
+            state["clock_font"] = n
+            save_state()
+            sample = render_time("00:00", n)
+            await event.edit(f"🔤 فونت {n} ست شد → {sample}")
+        else:
+            await event.edit("❌ شماره فونت باید بین ۱ تا ۵۲ باشه.")
+    
+
+
+# --- Alias: `.ساعت <num>` equals `.ساعت فونت <num>` ---
+def _register_clock_alias(client, state, save_state):
+    @client.on(events.NewMessage(pattern=r"\.ساعت (\d+)$"))
+    async def set_font_alias(event):
+        if event.sender_id != state["owner_id"]:
+            return
+        n = int(event.pattern_match.group(1))
+        if 1 <= n <= 52:
+            state["clock_font"] = n
+            save_state()
+            sample = render_time("00:00", n)
+            await event.edit(f"🔤 فونت {n} ست شد → {sample}")
+        else:
+            await event.edit("❌ شماره فونت باید بین ۱ تا ۵۲ باشه.")
+
