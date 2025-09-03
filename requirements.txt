@@ -1,5 +1,5 @@
 flask
-telethon
+telethon>=1.30.0
 pyrogram
 requests
 jdatetime
